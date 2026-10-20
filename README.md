@@ -33,7 +33,7 @@ g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp -o fibonacci.exe
 .\fibonacci.exe
 ```
 
-O menu permite executar cada método, comparar os resultados inteiros e procurar o primeiro índice em que Binet arredondada diverge do valor exato neste ambiente.
+O menu permite executar cada método, comparar os resultados inteiros e procurar o primeiro índice em que o resultado de Binet, após arredondamento, diverge do valor exato neste ambiente.
 
 ## Limites da demonstração
 
