@@ -94,4 +94,3 @@ Em um modelo de máquina com `double` de largura fixa e entrada limitada, a cham
 - [Fibonacci Number — Wolfram MathWorld](https://mathworld.wolfram.com/FibonacciNumber.html)
 - [Aritmética de ponto flutuante: problemas e limitações — Documentação Python](https://docs.python.org/pt-br/3/tutorial/floatingpoint.html)
 - [Rascunho de trabalho do padrão C++: funções matemáticas](https://eel.is/c++draft/c.math)
-

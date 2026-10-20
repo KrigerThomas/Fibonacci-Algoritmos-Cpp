@@ -37,4 +37,3 @@ Esse experimento também mostra por que é impreciso chamar Binet simplesmente d
 ## Observação para o relatório
 
 Ao apresentar o resultado, informe sempre a plataforma, o compilador e as opções de compilação. A conclusão correta é “primeiro erro observado neste ambiente”, não “Binet sempre falha em n=71”.
-

@@ -50,4 +50,3 @@ O menu permite executar cada método, comparar os resultados inteiros e procurar
 ## Autor
 
 Projeto de estudo desenvolvido por [Thomás Kriger](https://github.com/KrigerThomas).
-
