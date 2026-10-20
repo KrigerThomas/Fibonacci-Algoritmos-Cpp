@@ -1,0 +1,12 @@
+# Compiled program
+fibonacci
+fibonacci.exe
+*.o
+*.obj
+
+# IDE and editor files
+.vscode/
+.idea/
+*.user
+*.suo
+
