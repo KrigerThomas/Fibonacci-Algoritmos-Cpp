@@ -1,6 +1,6 @@
 # Algoritmos de Fibonacci em C++
 
-Projeto desenvolvido como estudo para a disciplina de **Linguagens de Programação**. A atividade foi proposta pelo professor para pesquisar diferentes algoritmos de Fibonacci e aprofundar o estudo da fórmula de Binet.
+Projeto desenvolvido como estudo para a disciplina de **Linguagens de Programação**. A atividade foi proposta pelo professor para pesquisar diferentes algoritmos de Fibonacci e aprofundar o estudo da fórmula de Binet. O código foi escrito em C++ com nomes em português e dividido em arquivos pequenos para facilitar o aprendizado.
 
 Este repositório também serve como registro pessoal: a ideia é poder revisitar no futuro os conceitos, implementações e conclusões do experimento, mesmo depois de concluir a disciplina.
 
@@ -19,7 +19,6 @@ A definição da sequência é a base matemática, mas não é um algoritmo. Par
 | Recursivo simples | Θ(φⁿ) — frequentemente limitado por O(2ⁿ) | O(n) na pilha | Traduz a recorrência diretamente, mas repete cálculos. |
 | Recursivo com memoização | O(n) | O(n) | Guarda resultados já calculados. |
 | Iterativo | O(n) | O(1) | Avança mantendo os dois termos anteriores. |
-| Dobra rápida | O(log n) | O(log n) na pilha | Usa identidades derivadas da multiplicação de matrizes. |
 | Fórmula de Binet | Depende da implementação de `std::pow` | O(1) de memória | Calcula uma aproximação com ponto flutuante e arredonda. |
 
 φ representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
@@ -29,22 +28,22 @@ A definição da sequência é a base matemática, mas não é um algoritmo. Par
 Com um compilador compatível com C++17, como g++:
 
 ```bash
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp -o fibonacci
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci
 ```
 
 No Windows PowerShell:
 
 ```powershell
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp -o fibonacci.exe
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
 .\fibonacci.exe
 ```
 
-O menu permite executar cada método, comparar os resultados inteiros e procurar o primeiro índice em que o resultado de Binet, após arredondamento, diverge do valor exato neste ambiente.
+O programa pede um índice, mostra os resultados dos métodos e procura o primeiro índice em que Binet diverge do resultado exato neste ambiente. A recursão simples só é executada até `n = 40`, pois fica muito lenta para valores maiores.
 
 ## Limites da demonstração
 
 - Os métodos inteiros usam `uint64_t` e aceitam `0 ≤ n ≤ 93`. O termo `F(94)` já não cabe nesse tipo.
-- A recursão simples é limitada a `n ≤ 40`, porque seu tempo cresce rapidamente.
+- A recursão simples só é executada até `n ≤ 40`, porque seu tempo cresce rapidamente.
 - O índice em que Binet começa a errar não é uma constante universal: depende da biblioteca matemática, do tipo de ponto flutuante, do compilador e das opções usadas.
 - Binet não é uma forma confiável de obter inteiros Fibonacci grandes. Para isso, prefira dobra rápida com um tipo inteiro de precisão suficiente.
 

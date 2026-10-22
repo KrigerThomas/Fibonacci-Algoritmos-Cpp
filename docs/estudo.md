@@ -30,16 +30,6 @@ Antes de calcular um termo, a função verifica se já guardou seu valor. Cada �
 
 O programa mantém apenas os dois últimos valores e avança em um laço. Para um único `F(n)`, executa O(n) somas e usa O(1) de memória auxiliar.
 
-### Dobra rápida
-
-Se `a = F(k)` e `b = F(k+1)`, as identidades
-
-\[
-F_{2k}=a(2b-a),\qquad F_{2k+1}=a^2+b^2
-\]
-
-permitem reduzir o índice pela metade a cada chamada. Isso dá O(log n) operações aritméticas e O(log n) de pilha nesta implementação recursiva.
-
 ## 3. De onde vem a fórmula de Binet?
 
 Partimos da recorrência `F_n = F_(n-1) + F_(n-2)`. Procuramos soluções da forma `F_n = r^n`. Substituindo na recorrência e dividindo por `r^(n-2)`, obtemos a equação característica
@@ -76,7 +66,7 @@ Para `n ≥ 1`, vale
 A^n=\begin{bmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{bmatrix}.
 \]
 
-Diagonalizar `A` separa suas duas raízes características, `φ` e `ψ`, e conduz à fórmula de Binet. A dobra rápida usa as mesmas relações de Fibonacci sem calcular toda a matriz: ela explora produtos que permitem obter `F(2k)` e `F(2k+1)` diretamente a partir de `F(k)` e `F(k+1)`.
+Diagonalizar `A` separa suas duas raízes características, `φ` e `ψ`, e conduz à fórmula de Binet. Essa conexão é uma forma de entender de onde vem a expressão, mesmo sem implementar diagonalização no programa.
 
 ## 5. Por que O(1) pode enganar?
 

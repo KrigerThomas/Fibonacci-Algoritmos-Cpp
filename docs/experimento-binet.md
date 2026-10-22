@@ -6,16 +6,16 @@ Até qual índice a aplicação direta da fórmula de Binet, calculada com `doub
 
 ## Procedimento
 
-O programa percorre os índices de `0` a `93`. Para cada índice, compara `std::round((φⁿ - ψⁿ) / √5)` com o resultado exato da implementação iterativa em `uint64_t`. A busca para na primeira divergência. O limite 93 é o maior usado neste projeto porque `F(94)` não cabe em `uint64_t`.
+Depois de mostrar os resultados para o índice digitado, o programa percorre os índices de `0` a `93`. Para cada índice, compara o resultado de Binet arredondado com o resultado exato do método iterativo. A busca para na primeira divergência. O limite 93 é o maior usado neste projeto porque `F(94)` não cabe em `uint64_t`.
 
 Para repetir:
 
 ```powershell
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp -o fibonacci.exe
+g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
 .\fibonacci.exe
 ```
 
-No menu, escolha a opção `6`.
+Ao executar, o programa informa a primeira divergência encontrada neste computador.
 
 ## Resultado observado
 
