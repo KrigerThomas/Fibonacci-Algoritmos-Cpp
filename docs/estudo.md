@@ -1,88 +1,52 @@
-# Fundamentação matemática e comparação
+# Fibonacci: o que cada modelo faz
 
-## 1. Definição da sequência
+Este texto acompanha meu estudo de Linguagens de Programação. A ideia é explicar com palavras simples o que o programa faz e o que acontece quando cada método é executado.
 
-A sequência de Fibonacci é definida por
+## A sequência
 
-$$
-F_0=0,\quad F_1=1,\quad F_n=F_{n-1}+F_{n-2}\quad(n\geq 2)
-$$
-
-Assim, seus primeiros termos são `0, 1, 1, 2, 3, 5, 8, 13, ...`. A razão entre termos consecutivos se aproxima da razão áurea
+Fibonacci começa com `F(0) = 0` e `F(1) = 1`. Depois, cada termo é a soma dos dois anteriores:
 
 $$
-\varphi=\frac{1+\sqrt{5}}{2}\approx1.618
+F(n) = F(n-1) + F(n-2)
 $$
 
-Essa parte do enunciado explica a sequência; não é, por si só, um algoritmo de computador.
+Os primeiros termos são `0, 1, 1, 2, 3, 5, 8, 13...`. A “natureza numérica” do enunciado é essa parte matemática e suas propriedades. Ela descreve a sequência, mas não é um algoritmo.
 
-## 2. Maneiras de calcular Fibonacci
+## Recursão simples
 
-“Natureza numérica” no enunciado é a parte matemática: define a sequência e apresenta propriedades como a razão áurea. Não é um algoritmo. Recursão, memoização e iteração são formas diferentes de escrever um programa que calcula seus termos. Binet é uma fórmula matemática que também pode ser implementada no programa.
+A função segue a definição quase literalmente: para calcular `F(n)`, chama a si mesma para calcular `F(n-1)` e `F(n-2)`. Isso deixa a ideia fácil de reconhecer, mas repete muitos cálculos. Por exemplo, `F(5)` pede `F(4)` e `F(3)`, e o cálculo de `F(4)` também pede `F(3)`.
 
-### Recursão simples
+O tempo cresce exponencialmente, normalmente descrito como `O(2^n)` (uma estimativa simples; a taxa mais precisa é `Θ(φ^n)`). A pilha de chamadas, por outro lado, não guarda todas as chamadas da árvore ao mesmo tempo: a maior profundidade é `O(n)`. Portanto, `O(n)` descreve o espaço usado pela pilha, não o tempo. Para índices grandes, a função pode demorar muito; chamadas profundas também podem esgotar a pilha.
 
-A função espelha a definição: para `n ≥ 2`, calcula `F(n-1) + F(n-2)`. É a versão mais direta para aprender recursão, mas volta a calcular muitos dos mesmos termos. A recorrência do tempo tem a mesma forma da sequência, então o crescimento é Θ(φⁿ); O(2ⁿ) é uma cota superior comum e mais simples. A profundidade da pilha é O(n).
+## Recursão com memória
 
-### Recursão com memória (memoização)
+É a recursão simples com uma tabela para guardar os termos já calculados. Se precisar de `F(3)` de novo, consulta a tabela em vez de recalcular. O nome dessa técnica é memoização. Ela continua sendo recursiva; não é recursão de cauda. É uma opção adicional do projeto, e tudo bem se por enquanto o foco ficar na recursão simples e na iteração.
 
-É a mesma ideia da recursão simples, mas com uma tabela para guardar resultados. Quando a função precisa de um termo que já calculou, ela consulta a tabela em vez de repetir o trabalho. Isso é chamado de memoização. É outra maneira de implementar o cálculo, mas você não precisa começar por ela: recursão simples e iteração são boas para entender a sequência.
+## Iteração
 
-### Iteração
+A função começa com os dois primeiros valores e usa um laço para somá-los, avançando até chegar ao índice pedido. Não abre uma nova chamada da função para cada termo. Faz `O(n)` passos e usa `O(1)` espaço extra: mantém só algumas variáveis. Por isso costuma ser a opção mais simples e eficiente para calcular um termo de tamanho moderado.
 
-O programa mantém apenas os dois últimos valores e avança em um laço. Para um único `F(n)`, executa O(n) somas e usa O(1) de memória auxiliar.
+## Fórmula de Binet
 
-## 3. De onde vem a fórmula de Binet?
-
-Partimos da recorrência `F_n = F_(n-1) + F_(n-2)`. Procuramos soluções da forma `F_n = r^n`. Substituindo na recorrência e dividindo por `r^(n-2)`, obtemos a equação característica
+A fórmula calcula uma aproximação de `F(n)` diretamente, usando o índice `n`:
 
 $$
-r^2-r-1=0
+F(n) = \frac{\varphi^n - \psi^n}{\sqrt{5}}
 $$
 
-Suas raízes são
+Aqui `φ` (“phi”) é `(1 + √5) / 2`, aproximadamente `1,618`, e `ψ` (“psi”) é `(1 - √5) / 2`, aproximadamente `-0,618`. O símbolo `φ^n` significa “phi elevado a n”. Por exemplo, para calcular `F(5)`, colocamos 5 no lugar de cada `n`; o resultado matemático é 5.
 
-$$
-\varphi=\frac{1+\sqrt{5}}{2},\quad \psi=\frac{1-\sqrt{5}}{2}
-$$
+No computador, esses valores são calculados como aproximações em `double`, que tem precisão finita. `std::round` arredonda o resultado antes de convertê-lo para inteiro. Em índices maiores, o pequeno erro pode passar de meio inteiro, e então o arredondamento devolve o inteiro vizinho errado. Isso explica por que Binet pode falhar perto de `n = 70` neste tipo de implementação; o primeiro índice exato depende do compilador e da biblioteca matemática.
 
-A solução geral combina as duas raízes: `F_n = Aφⁿ + Bψⁿ`. Aplicando `F_0=0` e `F_1=1`, chegamos a `A=1/√5` e `B=-1/√5`. Logo,
+Não é a razão áurea que muda quando `n` cresce. Se dividirmos termos consecutivos, `F(n+1) / F(n)`, o quociente se aproxima de `φ`. Essa convergência é uma propriedade da sequência. O erro de Binet é um problema separado, causado por precisão limitada ao calcular valores grandes.
 
-$$
-F_n=\frac{\varphi^n-\psi^n}{\sqrt{5}}
-$$
+## O que quer dizer “tempo constante” em Binet?
 
-A fórmula é exata na matemática real. No computador, `φ`, `ψ`, `√5` e suas potências são representados com precisão finita. O resultado de ponto flutuante pode ficar ligeiramente acima ou abaixo do inteiro correto; arredondar recupera o inteiro somente enquanto o erro total for menor que metade da distância entre inteiros.
+No papel, a fórmula tem um número fixo de operações. No código, porém, `std::pow` precisa calcular potências e os valores envolvidos crescem com `n`. Além disso, `double` tem tamanho e precisão fixos. Por isso, dizer simplesmente que Binet é `O(1)` esconde o custo da biblioteca e o limite de precisão; a fórmula também não produz inteiros exatos para todo `n`.
 
-## 4. A conexão com matrizes
+## Resumo pessoal
 
-Defina
-
-$$
-A = \left(\begin{matrix}1 & 1 \\ 1 & 0\end{matrix}\right)
-$$
-
-Para `n ≥ 1`, vale
-
-$$
-A^n = \left(\begin{matrix}F_{n+1} & F_n \\ F_n & F_{n-1}\end{matrix}\right)
-$$
-
-Diagonalizar `A` separa suas duas raízes características, `φ` e `ψ`, e conduz à fórmula de Binet. Essa conexão é uma forma de entender de onde vem a expressão, mesmo sem implementar diagonalização no programa.
-
-## 5. Por que O(1) pode enganar?
-
-Uma expressão fechada tem um número fixo de símbolos, mas isso não prova que a avaliação computacional tenha custo constante para qualquer tamanho de entrada. `std::pow` é uma função de biblioteca; seu custo e sua precisão dependem da implementação e do tipo numérico. Além disso, o valor produzido cresce com `n`, e representar um inteiro com mais algarismos exige mais bits.
-
-Para o exercício, é útil distinguir duas perguntas:
-
-1. Quantas operações aritméticas o método executa?
-2. Quanto custa cada operação e com quanta precisão ela é feita?
-
-Em um modelo de máquina com `double` de largura fixa e entrada limitada, a chamada pode parecer constante. Isso não significa que Binet seja uma solução exata e escalável para inteiros arbitrariamente grandes.
-
-## Referências
-
-- [Fibonacci Number — Wolfram MathWorld](https://mathworld.wolfram.com/FibonacciNumber.html)
-- [Aritmética de ponto flutuante: problemas e limitações — Documentação Python](https://docs.python.org/pt-br/3/tutorial/floatingpoint.html)
-- [Rascunho de trabalho do padrão C++: funções matemáticas](https://eel.is/c++draft/c.math)
+- **Recursão simples:** mais fácil de relacionar à definição, mas repete cálculos; tempo exponencial e pilha `O(n)`.
+- **Iteração:** soma os dois termos anteriores dentro de um laço; tempo `O(n)` e espaço extra `O(1)`.
+- **Recursão com memória:** guarda resultados para a recursão não recalcular termos; é uma otimização da recursão.
+- **Binet:** fórmula fechada que aproxima o termo diretamente; pode errar por causa da precisão finita dos números reais no computador.
