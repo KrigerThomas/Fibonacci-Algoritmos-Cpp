@@ -20,17 +20,14 @@ int main() {
     } else {
         std::cout << "Recursao simples nao foi executada: ela fica muito lenta acima de 40.\n";
     }
-    std::cout << "F(" << n << ") pela recursao com memoria: "
-              << fibonacciMemoizado(n) << '\n';
-    std::cout << "F(" << n << ") pelo metodo iterativo: "
-              << fibonacciIterativo(n) << '\n';
-    std::cout << "F(" << n << ") pela formula de Binet: "
-              << fibonacciBinet(n) << '\n';
+
+    std::cout << "F(" << n << ") pela recursao com memoria: " << fibonacciMemoizado(n) << '\n';
+    std::cout << "F(" << n << ") pelo metodo iterativo: " << fibonacciIterativo(n) << '\n';
+    std::cout << "F(" << n << ") pela formula de Binet: " << fibonacciBinet(n) << '\n';
 
     for (int indice = 0; indice <= 93; ++indice) {
         if (fibonacciBinet(indice) != fibonacciIterativo(indice)) {
-            std::cout << "Primeira diferenca de Binet neste computador: n = "
-                      << indice << '\n';
+            std::cout << "Primeira diferenca de Binet neste computador: n = " << indice << '\n';
             break;
         }
     }
