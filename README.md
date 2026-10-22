@@ -10,16 +10,16 @@ O ponto de partida foi estudar os modelos de cálculo da sequência de Fibonacci
 
 ## Sobre o enunciado
 
-A definição da sequência é a base matemática, mas não é um algoritmo. Para comparar **quatro algoritmos**, este projeto implementa recursão simples, recursão com memoização, iteração e dobra rápida. A fórmula de Binet aparece como um quinto método de cálculo e como o foco do experimento de precisão.
+A definição da sequência é a base matemática. O programa compara três maneiras de calcular os termos — recursão simples, recursão com memória e iteração — e também mostra o resultado aproximado da fórmula de Binet, que é o foco do experimento.
 
 ## Algoritmos comparados
 
-| Método | Tempo (operações aritméticas) | Espaço extra | Ideia |
-|---|---:|---:|---|
-| Recursivo simples | Θ(φⁿ) — frequentemente limitado por O(2ⁿ) | O(n) na pilha | Traduz a recorrência diretamente, mas repete cálculos. |
-| Recursivo com memoização | O(n) | O(n) | Guarda resultados já calculados. |
-| Iterativo | O(n) | O(1) | Avança mantendo os dois termos anteriores. |
-| Fórmula de Binet | Depende da implementação de `std::pow` | O(1) de memória | Calcula uma aproximação com ponto flutuante e arredonda. |
+| Método | Tempo | Ideia |
+|---|---:|---|
+| Recursivo simples | Exponencial | Traduz a definição, mas repete cálculos. |
+| Recursivo com memória | O(n) | Guarda valores já calculados. |
+| Iterativo | O(n) | Avança guardando os dois termos anteriores. |
+| Fórmula de Binet | Depende da implementação de `std::pow` | Calcula uma aproximação e arredonda. |
 
 φ representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
 
@@ -28,13 +28,14 @@ A definição da sequência é a base matemática, mas não é um algoritmo. Par
 Com um compilador compatível com C++17, como g++:
 
 ```bash
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci
+g++ -std=c++17 src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
+./fibonacci.exe
 ```
 
 No Windows PowerShell:
 
 ```powershell
-g++ -std=c++17 -O2 -Wall -Wextra -pedantic src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
+g++ -std=c++17 src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
 .\fibonacci.exe
 ```
 
@@ -45,7 +46,7 @@ O programa pede um índice, mostra os resultados dos métodos e procura o primei
 - Os métodos inteiros usam `uint64_t` e aceitam `0 ≤ n ≤ 93`. O termo `F(94)` já não cabe nesse tipo.
 - A recursão simples só é executada até `n ≤ 40`, porque seu tempo cresce rapidamente.
 - O índice em que Binet começa a errar não é uma constante universal: depende da biblioteca matemática, do tipo de ponto flutuante, do compilador e das opções usadas.
-- Binet não é uma forma confiável de obter inteiros Fibonacci grandes. Para isso, prefira dobra rápida com um tipo inteiro de precisão suficiente.
+- Binet não é uma forma confiável de obter inteiros Fibonacci grandes. Para isso, prefira um método inteiro com precisão suficiente.
 
 ## Material de estudo
 

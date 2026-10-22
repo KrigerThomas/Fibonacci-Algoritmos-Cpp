@@ -1,3 +1,7 @@
+
+// g++ -std=c++17 src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
+
+
 #include "algoritmos.h"
 
 #include <iostream>
@@ -12,8 +16,7 @@ int main() {
     }
 
     if (n <= 40) {
-        std::cout << "F(" << n << ") pela recursao simples: "
-                  << fibonacciRecursivo(n) << '\n';
+        std::cout << "F(" << n << ") pela recursao simples: " << fibonacciRecursivo(n) << '\n';
     } else {
         std::cout << "Recursao simples nao foi executada: ela fica muito lenta acima de 40.\n";
     }
