@@ -1,6 +1,12 @@
 # Algoritmos de Fibonacci em C++
 
-Projeto de estudo para comparar maneiras diferentes de calcular números de Fibonacci e investigar a precisão da fórmula de Binet.
+Projeto desenvolvido como estudo para a disciplina de **Linguagens de Programação**. A atividade foi proposta pelo professor para pesquisar diferentes algoritmos de Fibonacci e aprofundar o estudo da fórmula de Binet.
+
+Este repositório também serve como registro pessoal: a ideia é poder revisitar no futuro os conceitos, implementações e conclusões do experimento, mesmo depois de concluir a disciplina.
+
+## Contexto da atividade
+
+O ponto de partida foi estudar os modelos de cálculo da sequência de Fibonacci e entender como diferentes abordagens se expressam em C++, quais são seus custos e onde aparecem limitações práticas. O foco especial é a fórmula de Binet: sua origem matemática, a aparente promessa de cálculo direto e os erros de precisão de ponto flutuante observados na implementação.
 
 ## Sobre o enunciado
 
