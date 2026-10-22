@@ -59,13 +59,13 @@ A fórmula é exata na matemática real. No computador, `φ`, `ψ`, `√5` e sua
 Defina
 
 $$
-A=\begin{bmatrix}1&1\\1&0\end{bmatrix}
+A = \left(\begin{matrix}1 & 1 \\ 1 & 0\end{matrix}\right)
 $$
 
 Para `n ≥ 1`, vale
 
 $$
-A^n=\begin{bmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{bmatrix}
+A^n = \left(\begin{matrix}F_{n+1} & F_n \\ F_n & F_{n-1}\end{matrix}\right)
 $$
 
 Diagonalizar `A` separa suas duas raízes características, `φ` e `ψ`, e conduz à fórmula de Binet. Essa conexão é uma forma de entender de onde vem a expressão, mesmo sem implementar diagonalização no programa.
