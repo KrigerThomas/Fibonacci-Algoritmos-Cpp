@@ -1,13 +1,18 @@
 
-// g++ -std=c++17 src/main.cpp src/recursivo.cpp src/memoizado.cpp src/iterativo.cpp src/binet.cpp -o fibonacci.exe
-
-
 #include "algoritmos.h"
 
+#include <cmath>
+#include <iomanip>
 #include <iostream>
 
 int main() {
+    const double razaoAurea = (1.0 + std::sqrt(5.0)) / 2.0;
     int n;
+
+    std::cout << std::fixed << std::setprecision(30);
+    std::cout << "Razao aurea (double, exibida com 30 casas): " << razaoAurea << "\n\n";
+    std::cout << "Observacao: double nao guarda 30 casas de precisao; as casas finais\n"
+                 "sao apenas a exibicao de uma aproximacao com precisao limitada.\n\n";
 
     std::cout << "Digite um indice entre 0 e 93: ";
     if (!(std::cin >> n) || n < 0 || n > 93) {
