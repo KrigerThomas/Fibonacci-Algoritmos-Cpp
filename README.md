@@ -21,7 +21,7 @@ A definição da sequência é a base matemática. O programa compara três mane
 | Iterativo | O(n) | Avança guardando os dois termos anteriores. |
 | Fórmula de Binet | Depende da implementação de `std::pow` | Calcula uma aproximação e arredonda. |
 
-φ representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
+φ (se chama phi) representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
 
 ## Como compilar e executar
 
