@@ -18,7 +18,7 @@ NumeroFibonacci calcularComMemoria(int n, std::vector<NumeroFibonacci>& memoria)
 }
 }
 
-NumeroFibonacci fibonacciMemoizado(int n) {
+NumeroFibonacci fibonacciMemoizado(int n) { //Memoizado? 
     std::vector<NumeroFibonacci> memoria(n + 1, 0);
     return calcularComMemoria(n, memoria);
 }
