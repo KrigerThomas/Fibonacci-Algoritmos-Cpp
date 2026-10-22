@@ -4,27 +4,29 @@
 
 A sequência de Fibonacci é definida por
 
-\[
-F_0=0,\qquad F_1=1,\qquad F_n=F_{n-1}+F_{n-2}\quad(n\geq 2).
-\]
+$$
+F_0=0,\quad F_1=1,\quad F_n=F_{n-1}+F_{n-2}\quad(n\geq 2)
+$$
 
 Assim, seus primeiros termos são `0, 1, 1, 2, 3, 5, 8, 13, ...`. A razão entre termos consecutivos se aproxima da razão áurea
 
-\[
-\varphi=\frac{1+\sqrt5}{2}\approx1{,}618.
-\]
+$$
+\varphi=\frac{1+\sqrt{5}}{2}\approx1.618
+$$
 
 Essa parte do enunciado explica a sequência; não é, por si só, um algoritmo de computador.
 
-## 2. Quatro algoritmos
+## 2. Maneiras de calcular Fibonacci
+
+“Natureza numérica” no enunciado é a parte matemática: define a sequência e apresenta propriedades como a razão áurea. Não é um algoritmo. Recursão, memoização e iteração são formas diferentes de escrever um programa que calcula seus termos. Binet é uma fórmula matemática que também pode ser implementada no programa.
 
 ### Recursão simples
 
 A função espelha a definição: para `n ≥ 2`, calcula `F(n-1) + F(n-2)`. É a versão mais direta para aprender recursão, mas volta a calcular muitos dos mesmos termos. A recorrência do tempo tem a mesma forma da sequência, então o crescimento é Θ(φⁿ); O(2ⁿ) é uma cota superior comum e mais simples. A profundidade da pilha é O(n).
 
-### Recursão com memoização
+### Recursão com memória (memoização)
 
-Antes de calcular um termo, a função verifica se já guardou seu valor. Cada índice é calculado uma vez, reduzindo o tempo para O(n), com O(n) de memória para a tabela e a pilha recursiva.
+É a mesma ideia da recursão simples, mas com uma tabela para guardar resultados. Quando a função precisa de um termo que já calculou, ela consulta a tabela em vez de repetir o trabalho. Isso é chamado de memoização. É outra maneira de implementar o cálculo, mas você não precisa começar por ela: recursão simples e iteração são boas para entender a sequência.
 
 ### Iteração
 
@@ -34,21 +36,21 @@ O programa mantém apenas os dois últimos valores e avança em um laço. Para u
 
 Partimos da recorrência `F_n = F_(n-1) + F_(n-2)`. Procuramos soluções da forma `F_n = r^n`. Substituindo na recorrência e dividindo por `r^(n-2)`, obtemos a equação característica
 
-\[
-r^2-r-1=0.
-\]
+$$
+r^2-r-1=0
+$$
 
 Suas raízes são
 
-\[
-\varphi=\frac{1+\sqrt5}{2},\qquad \psi=\frac{1-\sqrt5}{2}.
-\]
+$$
+\varphi=\frac{1+\sqrt{5}}{2},\quad \psi=\frac{1-\sqrt{5}}{2}
+$$
 
 A solução geral combina as duas raízes: `F_n = Aφⁿ + Bψⁿ`. Aplicando `F_0=0` e `F_1=1`, chegamos a `A=1/√5` e `B=-1/√5`. Logo,
 
-\[
-F_n=\frac{\varphi^n-\psi^n}{\sqrt5}.
-\]
+$$
+F_n=\frac{\varphi^n-\psi^n}{\sqrt{5}}
+$$
 
 A fórmula é exata na matemática real. No computador, `φ`, `ψ`, `√5` e suas potências são representados com precisão finita. O resultado de ponto flutuante pode ficar ligeiramente acima ou abaixo do inteiro correto; arredondar recupera o inteiro somente enquanto o erro total for menor que metade da distância entre inteiros.
 
@@ -56,15 +58,15 @@ A fórmula é exata na matemática real. No computador, `φ`, `ψ`, `√5` e sua
 
 Defina
 
-\[
-A=\begin{bmatrix}1&1\\1&0\end{bmatrix}.
-\]
+$$
+A=\begin{bmatrix}1&1\\1&0\end{bmatrix}
+$$
 
 Para `n ≥ 1`, vale
 
-\[
-A^n=\begin{bmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{bmatrix}.
-\]
+$$
+A^n=\begin{bmatrix}F_{n+1}&F_n\\F_n&F_{n-1}\end{bmatrix}
+$$
 
 Diagonalizar `A` separa suas duas raízes características, `φ` e `ψ`, e conduz à fórmula de Binet. Essa conexão é uma forma de entender de onde vem a expressão, mesmo sem implementar diagonalização no programa.
 
