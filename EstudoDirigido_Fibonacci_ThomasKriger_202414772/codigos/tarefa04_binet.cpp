@@ -1,6 +1,14 @@
 // g++ -std=c++17 tarefa04_binet.cpp -o ../executaveis/tarefa04.exe
 // ..\executaveis\tarefa04.exe
 
+/*
+Esse código serve para comparar o resultado da fórmula de Binet com o resultado
+da implementação iterativa, verificando onde ocorrem erros.
+
+A complexidade de tempo é O(n) para a implementação iterativa e O(log n) para a 
+implementação da fórmula de Binet, pois a função std::pow tem complexidade logarítmica.
+*/
+
 #include <cmath>
 #include <chrono>
 #include <iostream>
