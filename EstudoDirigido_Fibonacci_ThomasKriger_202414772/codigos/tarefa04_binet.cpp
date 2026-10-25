@@ -87,11 +87,12 @@ long long fibonacciIterativo(int n) {
     return atual;
 }
 
+// Implementacao da formula de Binet.
 long long fibonacciBinet(int n) {
     double raizDeCinco = std::sqrt(5.0);
-    double phi = (1.0 + raizDeCinco) / 2.0;
-    double psi = (1.0 - raizDeCinco) / 2.0;
+    double phi = (1.0 + raizDeCinco) / 2.0; 
+    double psi = (1.0 - raizDeCinco) / 2.0; 
     double resultado = (std::pow(phi, n) - std::pow(psi, n)) / raizDeCinco;
-    return std::llround(resultado);
+    return std::llround(resultado); // llround (long long round) arredonda o resultado para o inteiro mais proximo afastando se do 0
 }
 

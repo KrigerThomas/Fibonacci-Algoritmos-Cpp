@@ -39,10 +39,9 @@ int main() {
     double tempoRecursivo = std::chrono::duration<double, std::nano>(fimRecursivo - inicioRecursivo).count();
     double tempoIterativo = std::chrono::duration<double, std::nano>(fimIterativo - inicioIterativo).count();
 
-    std::cout << "F(" << n << ") recursivo: " << resultadoRecursivo
-              << " | tempo: " << tempoRecursivo << " ns\n";
-    std::cout << "F(" << n << ") iterativo: " << resultadoIterativo
-              << " | tempo: " << tempoIterativo << " ns\n";
+    std::cout << "F(" << n << ") recursivo: " << resultadoRecursivo << " | tempo: " << tempoRecursivo << " ns\n";
+    
+    std::cout << "F(" << n << ") iterativo: " << resultadoIterativo << " | tempo: " << tempoIterativo << " ns\n";
 
     return 0;
 }
