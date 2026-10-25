@@ -1,0 +1,8 @@
+O professor pediu capturas de tela reais da compilacao e da execucao no terminal.
+
+Ainda nao coloquei imagens aqui para nao substituir as capturas do seu proprio terminal.
+Depois de abrir o PowerShell na pasta codigos e compilar conforme README.md, tire capturas
+das saidas das tarefas 01, 02, 03, 04 e 05 e salve os arquivos PNG nesta pasta.
+
+Para a tarefa 04, deixe visivel a tabela que mostra n=70 correto e a primeira diferenca
+em n=71 neste computador, mais a tabela de tempos.

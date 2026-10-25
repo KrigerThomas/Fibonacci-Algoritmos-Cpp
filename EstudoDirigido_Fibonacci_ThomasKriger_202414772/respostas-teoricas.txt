@@ -1,0 +1,49 @@
+Estudo Dirigido - Modelos Algoritmicos da Sequencia de Fibonacci
+Disciplina: Linguagem de Programacao: C++
+
+1. Vantagens e desvantagens dos quatro modelos
+
+Natureza numerica descreve a sequencia e propriedades matematicas; nao e um algoritmo de calculo. A recursao simples e facil de relacionar com a definicao, mas repete chamadas e fica lenta. A iteracao e simples e usa pouco espaco, mas precisa passar pelos termos anteriores ate chegar ao pedido. Binet calcula uma aproximacao diretamente pela formula, mas o ponto flutuante pode dar um resultado incorreto para indices grandes.
+
+2. Por que Binet raramente e usado para inteiros grandes em programas reais?
+
+Porque a formula usa aproximacoes de numeros irracionais e potencias em ponto flutuante. Quando o termo fica grande, um pequeno erro pode mudar o inteiro devolvido depois do arredondamento. Para inteiros grandes, e melhor usar um metodo inteiro junto com uma biblioteca de precisao arbitraria. A expressao tambem nao garante custo constante para qualquer tamanho de entrada: o computador precisa avaliar as potencias, e o tempo de std::pow depende da biblioteca e do tipo numerico.
+
+Na minha medicao, repeti cada chamada 10000 vezes e dividi o tempo total pelo numero de repeticoes. Com g++ 16.1.0 no Windows, obtive estes tempos aproximados em nanossegundos por chamada:
+
+n       iterativo       Binet
+10      17.86           39.29
+20      39.75           46.10
+40      49.06           40.36
+60      82.90           38.72
+70      76.56           38.61
+
+Esses valores mudam entre execucoes e computadores. Para n pequeno, as chamadas sao tao rapidas que o proprio cronometro interfere na medicao. A tabela serve como observacao deste computador, nao como regra geral. Binet ser mais rapido numa medicao nao elimina o risco de retornar um termo errado.
+
+3. Prototipo, assinatura, coercao e encapsulamento
+
+O prototipo informa ao compilador o nome, o retorno e os parametros da funcao antes de ela ser usada. A assinatura ajuda a identificar qual funcao foi declarada, incluindo seu nome e tipos de parametros. A coercao pode converter um valor de um tipo para outro; isso e pratico, mas uma conversao de double para inteiro pode descartar a parte decimal, por isso Binet arredonda antes de converter. O encapsulamento da classe deixa as operacoes disponiveis publicamente e permite esconder dados internos quando a classe realmente precisa guardar estado.
+
+4. Qual modelo usar em cada caso?
+
+- n pequeno e codigo didatico: recursao simples, porque mostra diretamente a definicao.
+- n moderado com necessidade de desempenho: iteracao, porque faz O(n) passos e usa O(1) de espaco extra.
+- n muito grande: usar inteiros de precisao arbitraria e um algoritmo mais eficiente, como exponenciacao de matrizes. O tipo long long deste exercicio tem limite e nao representa valores ilimitados.
+
+Origem da formula de Binet (ponto C do enunciado): a recorrencia e linear porque cada termo e uma combinacao dos termos anteriores, com coeficientes fixos, 1 e 1. Ela e homogenea porque nao ha um termo extra somado. Tentando uma solucao do tipo F(n) = r^n, a recorrencia fica r^n = r^(n-1) + r^(n-2). Dividindo por r^(n-2), obtemos r^2 - r - 1 = 0. As duas raizes sao phi = (1 + raiz de 5) / 2 e psi = (1 - raiz de 5) / 2. A combinacao dessas raizes que satisfaz F(0)=0 e F(1)=1 e F(n) = (phi^n - psi^n) / raiz de 5. A matriz A = [1 1; 1 0] tambem representa um passo da recorrencia; elevar A a n repete esse passo n vezes e seus elementos incluem termos de Fibonacci. Diagonalizar A separa os efeitos das duas raizes, chegando a mesma formula.
+
+5. Inicializacao e atribuicao em construtores
+
+Inicializacao e o primeiro valor dado a um atributo quando o objeto e criado. A lista de inicializacao escreve esse valor depois dos dois-pontos no construtor. Atribuicao troca o valor de um atributo que ja foi inicializado. A classe deste trabalho nao tem atributos, entao nao precisa de lista de inicializacao; o construtor padrao foi suficiente. Se ela guardasse um limite, por exemplo, esse limite poderia ser inicializado na lista do construtor.
+
+6. Por que usar private?
+
+private impede que o codigo cliente altere diretamente os dados internos do objeto. A classe controla como esses dados sao lidos ou modificados, o que evita estados invalidos e facilita mudar a implementacao sem mudar o programa que usa a classe. Nesta calculadora nao ha dados internos que precisem ser guardados, entao nao inventei um atributo apenas para preencher a secao private.
+
+Observacao sobre as medidas de complexidade
+
+Na recursao simples, o numero total de chamadas cresce exponencialmente, frequentemente limitado por O(2^n). A profundidade simultanea da pilha de chamadas e O(n). Essas duas medidas descrevem coisas diferentes. Na iteracao, o tempo e O(n) e o espaco extra e O(1).
+
+Observacao sobre o experimento de Binet
+
+O primeiro indice com divergencia depende do ambiente, do compilador e da biblioteca matematica. Deve-se registrar o primeiro erro observado na propria execucao, sem tratar n=71 como regra universal.
