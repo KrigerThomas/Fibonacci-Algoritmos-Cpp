@@ -4,7 +4,9 @@
 #include <iostream>
 
 long long CalculadoraFibonacci::recursivo(int n) const {
-    if (n <= 1) return n;
+    if (n <= 1) {
+        return n;
+    }
     return recursivo(n - 1) + recursivo(n - 2);
 }
 
@@ -20,15 +22,20 @@ long long CalculadoraFibonacci::iterativo(int n) const {
 }
 
 long long CalculadoraFibonacci::binet(int n) const {
-    if (n < 0 || n > 92) return 0;
+    if (n < 0 || n > 92) {
+        return 0;
+    }
 
     const double raizDeCinco = std::sqrt(5.0);
     const double phi = (1.0 + raizDeCinco) / 2.0;
     const double psi = (1.0 - raizDeCinco) / 2.0;
-    long long aproximado = std::llround((std::pow(phi, n) - std::pow(psi, n)) / raizDeCinco);
+    long long aproximado = std::llround(
+        (std::pow(phi, n) - std::pow(psi, n)) / raizDeCinco);
 
-    // Retorna zero quando Binet nao bate com a referencia iterativa.
-    if (aproximado != iterativo(n)) return 0;
+    // Retorna zero quando Binet nao bate com a iteracao.
+    if (aproximado != iterativo(n)) {
+        return 0;
+    }
     return aproximado;
 }
 

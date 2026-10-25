@@ -17,7 +17,8 @@ int main() {
 }
 
 void verificarRazaoAurea(int limite) {
-    double phi = (1.0 + sqrt(5.0)) / 2.0; // 1 + raiz(5) / 2
+    // std::sqrt calcula a raiz quadrada de 5.
+    double phi = (1.0 + std::sqrt(5.0)) / 2.0;
 
     long long a = 1;
     long long b = 1;
@@ -26,7 +27,8 @@ void verificarRazaoAurea(int limite) {
 
     for (int i = 1; i <= limite; i++) {
         double razao = (double)b / a;
-        double diferenca = fabs(razao - phi);
+        // std::abs retorna a diferenca sem sinal negativo.
+        double diferenca = std::abs(razao - phi);
 
         std::cout << i << ") " << b << " / " << a << " = " << razao  << " (diferenca para phi: " << diferenca << ")\n";
 
