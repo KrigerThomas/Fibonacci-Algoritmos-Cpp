@@ -27,7 +27,7 @@ void verificarRazaoAurea(int limite) {
 
     for (int i = 1; i <= limite; i++) {
         double razao = (double)b / a;
-        // std::abs retorna a diferenca sem sinal negativo.
+        // std::abs retorna a diferenca sem sinal negativo. (modulo)
         double diferenca = std::abs(razao - phi);
 
         std::cout << i << ") " << b << " / " << a << " = " << razao  << " (diferenca para phi: " << diferenca << ")\n";
