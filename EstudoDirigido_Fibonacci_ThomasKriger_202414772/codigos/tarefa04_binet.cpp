@@ -14,7 +14,7 @@ int main() {
     for (int n = 0; n <= 92; n++) {
         if (fibonacciIterativo(n) != fibonacciBinet(n)) {
             primeiroErro = n;
-            break;
+            break
         }
     }
 
