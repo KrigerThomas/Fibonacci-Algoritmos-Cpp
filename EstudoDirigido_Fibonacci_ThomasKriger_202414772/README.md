@@ -1,6 +1,6 @@
 # Estudo dirigido de Fibonacci
 
-Atividade de Linguagem de Programacao: C++, organizada conforme os arquivos e tarefas pedidos pelo professor.
+Essa pasta representa a atividade da disciplina de Linguagens de Programação, organizada conforme os arquivos e tarefas pedidos pelo professor.
 
 ## Conteudo
 
