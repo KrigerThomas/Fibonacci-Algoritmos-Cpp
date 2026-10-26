@@ -1,16 +1,12 @@
 # Algoritmos de Fibonacci em C++
 
-Projeto desenvolvido como estudo para a disciplina de **Linguagens de Programação**. A atividade foi proposta pelo professor para pesquisar diferentes algoritmos de Fibonacci e aprofundar o estudo da fórmula de Binet. O código foi escrito em C++ com nomes em português e dividido em arquivos pequenos para facilitar o aprendizado.
+Este repositório reúne meus estudos sobre a sequência de Fibonacci e os algoritmos usados para calculá-la. O projeto começou como uma atividade da disciplina de **Linguagens de Programação**, proposta pelo professor, e também serve como registro para eu consultar o conteúdo no futuro.
 
-Este repositório também serve como registro pessoal: a ideia é poder revisitar no futuro os conceitos, implementações e conclusões do experimento, mesmo depois de concluir a disciplina.
+## Organização
 
-## Contexto da atividade
-
-O ponto de partida foi estudar os modelos de cálculo da sequência de Fibonacci e entender como diferentes abordagens se expressam em C++, quais são seus custos e onde aparecem limitações práticas. O foco especial é a fórmula de Binet: sua origem matemática, a aparente promessa de cálculo direto e os erros de precisão de ponto flutuante observados na implementação.
-
-## Sobre o enunciado
-
-A definição da sequência é a base matemática. O programa compara três maneiras de calcular os termos — recursão simples, recursão com memória e iteração — e também mostra o resultado aproximado da fórmula de Binet, que é o foco do experimento.
+- `src/`: programa principal e implementações dos algoritmos.
+- `docs/`: anotações sobre a sequência, a comparação dos métodos e o experimento com a fórmula de Binet.
+- `atividade-dirigida-fibonacci/`: arquivos da atividade passada pelo professor, separados do estudo principal.
 
 ## Algoritmos comparados
 
@@ -21,7 +17,7 @@ A definição da sequência é a base matemática. O programa compara três mane
 | Iterativo | O(n) | Avança guardando os dois termos anteriores. |
 | Fórmula de Binet | Depende da implementação de `std::pow` | Calcula uma aproximação e arredonda. |
 
-φ (se chama phi) representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
+φ (phi) representa a razão áurea. As complexidades contam operações aritméticas em um modelo simplificado; com inteiros de precisão arbitrária, o custo de cada operação também cresce com o tamanho do número.
 
 ## Como compilar e executar
 

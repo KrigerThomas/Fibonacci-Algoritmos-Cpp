@@ -5,8 +5,8 @@
 Esse código serve para comparar o resultado da fórmula de Binet com o resultado
 da implementação iterativa, verificando onde ocorrem erros.
 
-A complexidade de tempo é O(n) para a implementação iterativa e O(log n) para a 
-implementação da fórmula de Binet, pois a função std::pow tem complexidade logarítmica.
+A versão iterativa faz O(n) somas. Binet usa uma fórmula direta, mas o custo real depende
+de como std::pow é implementada, então não dá para afirmar que seja O(log n).
 */
 
 #include <cmath>
