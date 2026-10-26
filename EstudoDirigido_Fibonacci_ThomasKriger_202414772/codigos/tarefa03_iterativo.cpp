@@ -13,7 +13,7 @@ a pilha até retornarem.
 */
 
 #include <iostream>
-#include <chrono>
+#include <chrono> // Biblioteca para medir intervalos de tempo.
 
 long long fibonacciIterativo(int n);
 long long fibonacciRecursivo(int n);
@@ -28,14 +28,18 @@ int main() {
         std::cin >> n;
     }
 
-    auto inicioRecursivo = std::chrono::steady_clock::now();
+    // steady_clock nao volta atras se o horario do PC mudar; now() pega o instante atual.
+    // auto deixa o compilador escolher o tipo usado para guardar esse instante.
+    auto inicioRecursivo = std::chrono::steady_clock::now(); // Marca o comeco da recursao.
     long long resultadoRecursivo = fibonacciRecursivo(n);
-    auto fimRecursivo = std::chrono::steady_clock::now();
+    auto fimRecursivo = std::chrono::steady_clock::now(); // Marca o fim da recursao.
 
-    auto inicioIterativo = std::chrono::steady_clock::now();
+    auto inicioIterativo = std::chrono::steady_clock::now(); // Marca o comeco da iteracao.
     long long resultadoIterativo = fibonacciIterativo(n);
-    auto fimIterativo = std::chrono::steady_clock::now();
+    auto fimIterativo = std::chrono::steady_clock::now(); // Marca o fim da iteracao.
 
+    // fim - inicio da o tempo gasto. duration<double, std::nano> guarda esse tempo em nanossegundos.
+    // double permite casas decimais; std::nano e um bilionesimo de segundo; count() pega o numero.
     double tempoRecursivo = std::chrono::duration<double, std::nano>(fimRecursivo - inicioRecursivo).count();
     double tempoIterativo = std::chrono::duration<double, std::nano>(fimIterativo - inicioIterativo).count();
 
